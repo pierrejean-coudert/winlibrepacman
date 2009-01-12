@@ -20,7 +20,8 @@ from smart.commands import search, install
 from client.service.const import DATADIR, PACMANDIR
 
 if os.name == 'posix':
-    baseurl = 'file://' + os.path.join('Users/bertrand/Workspace/winlibrepacman/','test.xml')
+    from user import home
+    baseurl = 'file://' + os.path.join(home, 'Workspace/winlibrepacman/','test.xml')
 #    baseurl = "http://127.0.0.1/~bertrand/test.xml"
 if os.name == 'nt':
     baseurl = "http://127.0.0.1/winlibrepacman/test.xml"
