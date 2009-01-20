@@ -1,32 +1,108 @@
-=======================
-Requirements definition
-=======================
+==================================
+WinLibre Package Manager Proposal
+==================================
+
+**Contact**: *bertrand.cachet@gmail.com*
 
 Scope
 *****
-We will define what *WinPacMan* must do.
 
-Main goal is to ease the deployment of Open Source application on Windows 
-platform.
+Main Goal
+=========
 
-WinPacMan Client is an application which will be in charge of helping end user
-to find/install/uninstall Open Source applications. Informations about available 
-applications will be fetch from WinPacMan Repository Server. Informations stored 
-onto the Repository will be added/updated by the developer using the Package 
-Generator Tool or via the *administration* access on the URL.
+We want to develop a Windows package management system in order to ease the 
+deployment of Open Source applications on Win32 systems.
 
-The install/uninstall/update/enumerate installations will use scripts that will 
-be embedded into the application package. This package can be of several types:
+Description
+===========
 
-* Contain only scripts and description of the application. Official/Unofficial 
-  application setup will be fetch from project's server.
-* Contain scripts, description and binary data (setup or only files). These 
-  packages will be executable that can be launched even if WinPacMan application 
-  is not already installed. In this case, WinPacMan will be installed first to 
-  handle package itself.
+The functionality is divided into several parts:
+
++---------------------+-------------------------------------------------------------------+
+|                     | To be able to install a software, it should be packaged.          |
+|                     | Package will be a simple compressed file (ZIP, TAR, XAR)          |
+|                     | which contains description of the software, specific              |
+|  **Packages**       | scripts (that will be used to install/remove/update/enumerate     |
+|                     | the application onto the OS) and a binary representation          |
+|                     | of the application itself (list of binary files that need         |
+|                     | to be installed or an official/unofficial setup of the            |
+|                     | application).                                                     |
++---------------------+-------------------------------------------------------------------+
+|                     | Place (WebServer, DVD) where we find informations about the       |
+| **Repository**      | software available in the distribution. There is two levels of    |
+|                     | informations:                                                     |
+|                     |                                                                   |
+|                     | * Generic: A list of the name, version and description of         |
+|                     |   the applications which will inform the user about which         |
+|                     |   application is available.                                       |
+|                     | * Specific: At a specific place, it is possible to find           |
+|                     |   specific information on a given application: URL of the         |
+|                     |   package, dependencies, required ... which will be used to       |
+|                     |   install/remove/update the application itself.                   |
++---------------------+-------------------------------------------------------------------+
+|                     | Application used to search/install/remove/update applications on  |
+| **Package Manager** | the user's Windows system. It will handle software dependencies   |
+|                     | will install libraries/applications needed by the software        |
+|                     | to run properly. User will interact with application using CLI or |
+|                     | GUI.                                                              |
++---------------------+-------------------------------------------------------------------+
+| **Package Creator** | Used by developers to create package to deploy their application  |
+|                     | on Windows system.                                                |
++---------------------+-------------------------------------------------------------------+
+
+
+1. Repository
+--------------
+
+2. Package Manager
+-------------------
+
+Package Manager is divided in two parts:
+
+* One will install/remove/update application using the package file.
+
+
++---------------------------------+-------------------------------------------------------+
+| **wpkg** *action* <package>     | Install/remove/update software described into package |
+|                                 | file. wpkg will use scripts located into the package  |
+|                                 | and will use/download binary representation of the    |
+|                                 | application                                           |
++---------------------------------+-------------------------------------------------------+
+| **wpkg** *status* <package>     | Get stattus of the package.                           |
+|                                 | Possible output:Installed/Not Installed/Update        |
+|                                 | Available.                                            |
++---------------------------------+-------------------------------------------------------+
+| **wpkg** *show* <package>       | Show information about package. It will output: name, |
+|                                 | description, license and so on.                       |
++---------------------------------+-------------------------------------------------------+
+
+* Another one will search/download packages from repository. It will also handle 
+  dependencies.
+
++---------------------------------+-------------------------------------------------------+
+| **wpckgmgr** *update*           | Updates package lists. Get last package list from     |
+|                                 | repo                                                  |
++---------------------------------+-------------------------------------------------------+
+| **wpckmgr** *action* <name>     | Install/update/remove package. Handles dependencies.  |
+|                                 |                                                       |
++---------------------------------+-------------------------------------------------------+
+| **wpckgmgr** *search* <keyword> | Search through name/description of packages. Outputs  |
+|                                 | names of packages whose name or description fits the  |
+|                                 | keyword                                               |
++---------------------------------+-------------------------------------------------------+
+| **wpckgmgr** *show* <name>      | Outputs information about package. It outputs even if |
+|                                 | package wasn't installed or downloaded. Manager gets  |
+|                                 | information from package list.                        |
++---------------------------------+-------------------------------------------------------+
+
+
+3. Package Creator
+-------------------
+
+
 
 Technical requirement
-*********************
+======================
 
 1. The Repository Server
 ------------------------
