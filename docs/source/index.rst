@@ -8,12 +8,10 @@ Welcome to Package Manager's documentation!
 Contents:
 
 .. toctree::
+   :maxdepth: 3
 
    requirements
-   specifications
-   client_specifications
-   server_specifications
-   devtools_specifications
+   specs/specifications
 
 Indices and tables
 ==================

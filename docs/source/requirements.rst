@@ -51,11 +51,11 @@ The functionality is divided into several parts:
 +---------------------+-------------------------------------------------------------------+
 
 
-1. Repository
---------------
+Repository
+----------
 
-2. Package Manager
--------------------
+Package Manager
+---------------
 
 Package Manager is divided in two parts:
 
@@ -96,16 +96,16 @@ Package Manager is divided in two parts:
 +---------------------------------+-------------------------------------------------------+
 
 
-3. Package Creator
--------------------
+Package Creator
+---------------
 
 
 
 Technical requirement
-======================
+*********************
 
-1. The Repository Server
-------------------------
+The Repository Server
+=====================
 
 It's a RESTful web application where each URL represent a package:
 

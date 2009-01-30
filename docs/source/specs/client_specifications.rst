@@ -32,7 +32,7 @@ Features
 Ideas @ GSoC Mentor Summit 08
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 	
-.. image:: IMG_0331.JPG
+.. image:: ./pics/IMG_0331.JPG
 
 GUI
 ---
